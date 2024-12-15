@@ -77,3 +77,82 @@ Angular provides four types of data binding to connect components to templates:
 - Example:
   ```html
   <h1>Welcome, {{ username }}!</h1>
+
+  # Property Binding in Angular
+
+# Property Binding in Angular
+
+## What is Property Binding?
+Property Binding in Angular is a way to bind data from a component to an element's property in the DOM. It is used to dynamically set values for properties of HTML elements or directives.
+
+- **Syntax**: `[property]="expression"`
+- The property in square brackets refers to the DOM property, not the HTML attribute.
+
+---
+
+## Why Use Property Binding?
+- To dynamically control UI elements based on the component's data.
+- It ensures the binding is reactive, so when the data changes, the view updates automatically.
+
+---
+
+## Example: Binding an Image Source
+Here’s an example of using property binding to dynamically set the `src` attribute of an image:
+
+### Component (TypeScript)
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-property-binding',
+  templateUrl: './property-binding.component.html',
+  styleUrls: ['./property-binding.component.css']
+})
+export class PropertyBindingComponent {
+  imagePath: string = 'https://example.com/image.jpg';
+  altText: string = 'Example Image';
+}
+
+
+<h2>Property Binding Example</h2>
+<img [src]="imagePath" [alt]="altText" />
+
+Here, [src] binds the imagePath property from the component to the src attribute of the <img> element.
+Similarly, [alt] binds the altText property.
+
+
+Example: Controlling Button Disabled State
+You can use property binding to enable or disable a button dynamically.
+
+Component (TypeScript)
+typescript
+Copy code
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-property-binding',
+  templateUrl: './property-binding.component.html',
+  styleUrls: ['./property-binding.component.css']
+})
+export class PropertyBindingComponent {
+  isDisabled: boolean = true;
+
+  toggleButton() {
+    this.isDisabled = !this.isDisabled;
+  }
+}
+Template (HTML)
+html
+Copy code
+<h2>Button Disabled State Example</h2>
+<button [disabled]="isDisabled">Click Me</button>
+<button (click)="toggleButton()">Toggle Disabled State</button>
+[disabled] binds the isDisabled property to the button's disabled attribute.
+Clicking the "Toggle Disabled State" button toggles the isDisabled value.
+Key Points
+Property Binding only works with DOM properties, not HTML attributes. For example:
+[class] binds to the className property, not the class attribute.
+The data flow is one-way, from the component to the DOM.
+
+
+
